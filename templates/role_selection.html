@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choose Your Role</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="role-selection-container">
+        <h1>Select Your Role</h1>
+        <p>Please choose whether you are a landlord or a renter to proceed.</p>
+
+        <div class="role-buttons">
+            <form action="{{ url_for('dashboard') }}" method="GET">
+                <input type="hidden" name="role" value="landlord">
+                <button type="submit" class="role-button landlord-button">Landlord</button>
+            </form>
+            <form action="{{ url_for('dashboard') }}" method="GET">
+                <input type ="hidden" name="role" value="renter">
+                <button type="submit" class="role-button renter-button">Renter</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

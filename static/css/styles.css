@@ -1,0 +1,300 @@
+/* Reset default browser styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body and Background */
+body {
+    font-family: 'Arial', sans-serif;
+    color: #ffffff;
+    background-color: #0a0b1b;
+    overflow-x: hidden;
+}
+
+/* Header Navigation */
+header {
+    width: 100%;
+    padding: 20px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+}
+
+.nav-links li {
+    margin: 0 20px;
+}
+
+.nav-links li a {
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 16px;
+    padding: 5px 0;
+    position: relative;
+}
+
+.nav-links li a::after {
+    content: '';
+    width: 100%;
+    height: 2px;
+    background: #2b6cb0;
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.nav-links li a:hover::after {
+    transform: scaleX(1);
+}
+
+/* Authentication Buttons */
+.auth-buttons {
+    display: flex;
+    align-items: center;
+}
+
+.auth-buttons a {
+    text-decoration: none;
+    font-size: 14px;
+    margin-left: 15px;
+    padding: 8px 20px;
+    border: 2px solid #ffffff;
+    border-radius: 25px;
+    color: #ffffff;
+    transition: all 0.3s ease;
+}
+
+.auth-buttons .sign-up {
+    background-color: #ffffff;
+    color: #0a0b1b;
+}
+
+.auth-buttons a:hover {
+    background-color: #2b6cb0;
+    color: #ffffff;
+    border-color: #2b6cb0;
+}
+
+/* Main Content */
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+}
+
+.content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+}
+
+.text-section {
+    max-width: 50%;
+}
+
+.text-section h1 {
+    font-size: 4rem;
+    margin-bottom: 10px;
+}
+
+.text-section p {
+    font-size: 1.2rem;
+    margin: 5px 0;
+}
+
+.see-more {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 25px;
+    background-color: transparent;
+    color: #ffffff;
+    border: 2px solid #ffffff;
+    border-radius: 30px;
+    text-decoration: none;
+    font-size: 14px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.see-more:hover {
+    background-color: #2b6cb0;
+    color: #ffffff;
+}
+
+/* Graphics Section */
+.graphic {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.graphic img {
+    width: 400px;
+    height: auto;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 250px;
+    background-color: #2b3e50;
+    color: #ffffff;
+    height: 100vh;
+    padding: 20px;
+    position: fixed;
+    left: 0;
+}
+
+.sidebar-header {
+    margin-bottom: 20px;
+    font-size: 22px;
+    text-align: center;
+}
+
+.sidebar-links {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar-links li {
+    margin: 20px 0;
+}
+
+.sidebar-links li a {
+    color: #e9dddd;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.sidebar-links li a:hover {
+    text-decoration: underline;
+}
+
+/* Main Content Area */
+.main-content {
+    margin-left: 250px; /* Align with sidebar width */
+    padding: 20px;
+    width: calc(100% - 250px);
+}
+
+.top-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.search-bar input {
+    padding: 10px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    width: 300px;
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+}
+
+.nav-actions a {
+    margin-left: 20px;
+    font-size: 18px;
+    text-decoration: none;
+    color: #2b3e50;
+}
+
+/* Dashboard Content */
+.dashboard-content {
+    margin-top: 20px;
+}
+
+.dashboard-header {
+    margin-bottom: 30px;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.card {
+    background-color: #111010;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.recent-activity {
+    margin-top: 40px;
+}
+
+.recent-activity ul {
+    list-style: none;
+    padding: 0;
+}
+
+/* Role Selection Page Styles */
+.role-selection-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #6d5e7e;
+    text-align: center;
+}
+
+.role-selection-container h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.role-selection-container p {
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+.role-buttons {
+    display: flex;
+    gap: 20px;
+}
+
+.role-button {
+    padding: 15px 30px;
+    font-size: 18px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.landlord-button {
+    background-color: #007bff;
+    color: white;
+}
+
+.renter-button {
+    background-color: #28a745;
+    color: white;
+}
+
+.role-button:hover {
+    opacity: 0.8;
+}

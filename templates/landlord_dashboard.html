@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landlord Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <!-- Sidebar for Navigation -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h2>Landlord Panel</h2>
+        </div>
+        <ul class="sidebar-links">
+            <li><a href="#">Dashboard</a></li>
+            <li><a href="#">My Properties</a></li>
+            <li><a href="#">Tenants</a></li>
+            <li><a href="#">Rental Applications</a></li>
+            <li><a href="#">Payments</a></li>
+            <li><a href="#">Maintenance Requests</a></li>
+            <li><a href="#">Reports</a></li>
+            <li><a href="#">Logout</a></li>
+        </ul>
+    </aside>
+
+    <!-- Main Content Area -->
+    <div class="main-content">
+        <!-- Top Navigation Bar -->
+        <nav class="top-nav">
+            <div class="search-bar">
+                <input type="text" placeholder="Search...">
+            </div>
+            <div class="nav-actions">
+                <a href="#" class="notification-icon">🔔</a>
+                <a href="#" class="profile-icon">👤</a>
+            </div>
+        </nav>
+
+        <!-- Dashboard Content for Landlord -->
+        <section class="dashboard-content">
+            <div class="dashboard-header">
+                <h1>Welcome, Landlord!</h1>
+                <p>Here is the summary of your properties and activities.</p>
+            </div>
+
+            <!-- Key Metrics Cards -->
+            <div class="cards">
+                <div class="card">
+                    <h3>Properties Managed</h3>
+                    <p>8 Properties</p>
+                </div>
+                <div class="card">
+                    <h3>Total Rent Received</h3>
+                    <p>$5,000</p>
+                </div>
+                <div class="card">
+                    <h3>Pending Applications</h3>
+                    <p>3 Applications</p>
+                </div>
+                <div class="card">
+                    <h3>Active Tenants</h3>
+                    <p>12 Tenants</p>
+                </div>
+            </div>
+
+            <!-- Table for Active Rentals -->
+            <div class="data-table">
+                <h2>Active Rentals</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Property</th>
+                            <th>Tenant Name</th>
+                            <th>Rent Due Date</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Apartment A1</td>
+                            <td>John Doe</td>
+                            <td>2024-09-15</td>
+                            <td>Paid</td>
+                            <td><button>View</button> <button>Contact</button></td>
+                        </tr>
+                        <!-- More rows as needed -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
