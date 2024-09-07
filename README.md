@@ -1,4 +1,4 @@
-# Rental Management System
+# Rental House Management System
 
 ## Overview
 This Rental Management System is a web application designed to help manage rental properties. It is built using Python, HTML, CSS, and JavaScript. The application allows users to add, update, and delete rental properties, as well as manage tenant information.
