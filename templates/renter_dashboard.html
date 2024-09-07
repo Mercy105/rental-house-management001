@@ -14,11 +14,11 @@
         </div>
         <ul class="sidebar-links">
             <li><a href="#">Dashboard</a></li>
-            <li><a href="#">Available Apartments</a></li>
-            <li><a href="#">My Rentals</a></li>
+            <li><a href="#">Profile Management</a></li>
             <li><a href="#">Payment History</a></li>
+            <li><a href="#">Pay Rent Online</a></li>
             <li><a href="#">Maintenance Requests</a></li>
-            <li><a href="#">Profile Settings</a></li>
+            <li><a href="#">Notifications</a></li>
             <li><a href="#">Logout</a></li>
         </ul>
     </aside>
@@ -27,9 +27,6 @@
     <div class="main-content">
         <!-- Top Navigation Bar -->
         <nav class="top-nav">
-            <div class="search-bar">
-                <input type="text" placeholder="Search...">
-            </div>
             <div class="nav-actions">
                 <a href="#" class="notification-icon">🔔</a>
                 <a href="#" class="profile-icon">👤</a>
@@ -40,36 +37,39 @@
         <section class="dashboard-content">
             <div class="dashboard-header">
                 <h1>Welcome, Renter!</h1>
-                <p>Here is your personalized dashboard.</p>
+                <p>Here is your personalized dashboard for managing your account.</p>
             </div>
 
-            <!-- Key Metrics Cards -->
+            <!-- Service Cards -->
             <div class="cards">
                 <div class="card">
-                    <h3>Current Rentals</h3>
-                    <p>1 Active Rental</p>
+                    <h3>Profile Management</h3>
+                    <a href="#">Manage Profile</a>
                 </div>
                 <div class="card">
-                    <h3>Rent Due</h3>
-                    <p>Next Due: $1,200</p>
+                    <h3>Payment History</h3>
+                    <a href="#">View History</a>
+                </div>
+                <div class="card">
+                    <h3>Pay Rent</h3>
+                    <a href="#">Pay Now</a>
                 </div>
                 <div class="card">
                     <h3>Maintenance Requests</h3>
-                    <p>2 Pending</p>
+                    <a href="#">Submit Request</a>
                 </div>
                 <div class="card">
-                    <h3>New Listings</h3>
-                    <p>5 Available</p>
+                    <h3>Notifications</h3>
+                    <a href="#">View Notifications</a>
                 </div>
-            </div>
-
-            <!-- List of Available Apartments -->
-            <div class="listings">
-                <h2>Available Apartments</h2>
-                <ul>
-                    <li>Apartment B2 - 2 Bed, 1 Bath - $1,500/month - <button>View Details</button></li>
-                    <!-- More listings as needed -->
-                </ul>
+                <div class="notifications">
+                    <h3>Notifications</h3>
+                    <ul>
+                        {% for notification in notifications %}
+                            <li>{{ notification.message }} - {{ notification.date }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
             </div>
         </section>
     </div>

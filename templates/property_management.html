@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Properties</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="manage-properties-container">
+        <h1>Manage Properties</h1>
+
+        <!-- Form to Add New Property -->
+        <div class="add-property-form">
+            <h2>Add a New Property</h2>
+            <form action="{{ url_for('add_property') }}" method="POST" enctype="multipart/form-data">
+                <label for="name">Property Name:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="location">Location:</label>
+                <input type="text" id="location" name="location" required>
+
+                <label for="rent">Rent (per month):</label>
+                <input type="number" id="rent" name="rent" step="0.01" required>
+
+                <label for="amenities">Amenities (comma-separated):</label>
+                <textarea id="amenities" name="amenities" required></textarea>
+
+                <label for="photo">Upload Property Photo:</label>
+                <input type="file" id="photo" name="photo" accept="image/*" required>
+
+                <button type="submit">Add Property</button>
+            </form>
+        </div>
+
+        <!-- List of Existing Properties -->
+        <div class="existing-properties">
+            <h2>Existing Properties</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Property Name</th>
+                        <th>Location</th>
+                        <th>Rent</th>
+                        <th>Amenities</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for property in properties %}
+                    <tr>
+                        <td>{{ property.name }}</td>
+                        <td>{{ property.location }}</td>
+                        <td>${{ property.rent }}</td>
+                        <td>{{ property.amenities }}</td>
+                        <td>
+                            <a href="{{ url_for('edit_property', property_id=property.id) }}">Edit</a> | 
+                            <a href="{{ url_for('delete_property', property_id=property.id) }}" onclick="return confirm('Are you sure you want to delete this property?');">Delete</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
