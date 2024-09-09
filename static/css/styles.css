@@ -9,8 +9,8 @@
 body {
     font-family: 'Arial', sans-serif;
     color: #0f0f0f;
-    background-color: #eaeaf3;
-    overflow-x: hidden;
+    background-repeat:no-repeat;
+    background-size:100%;
 }
 
 /* Header Navigation */
@@ -145,7 +145,7 @@ main {
 }
 
 .graphic img {
-    width: 400px;
+    width: 500px;
     height: auto;
 }
 

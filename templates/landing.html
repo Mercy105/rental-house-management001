@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SmartRentals</title>
+    <div class="background-image">
+        <img src="{{ url_for('static', filename='images/Screenshot (41).png') }}">
+    </div>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 
@@ -26,9 +29,6 @@
                 <p>Welcome to SmartRentals.</p>
                 <p>Request a demo to setup your account and sign up.</p>
                 <a href="{{ url_for('dashboard') }}" class="request-demo">Request Demo</a>
-            </div>
-            <div class="graphic">
-                <img src="{{ url_for('static', filename='images/Screenshot (41).png') }}">
             </div>
         </div>
     </main>
