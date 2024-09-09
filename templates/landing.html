@@ -3,34 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SmartRentals</title>
-    <div class="background-image">
-        <img src="{{ url_for('static', filename='images/Screenshot (41).png') }}">
-    </div>
+    <title>SmartRentals - Landing Page</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
-
 <body>
+    <!-- Header with Navigation -->
     <header>
         <nav>
-            <ul class="nav-links">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Services</a></li>
-                <li><a href="#">Contact us</a></li>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact Us</a></li>
+                <li><a href="https://mercy105.github.io/rental-house-management001/" class="button">View Project</a></li> <!-- Link to the deployed application -->
             </ul>
         </nav>
     </header>
-    <main>
-        <div class="content">
-            <div class="text-section">
-                <h1>SmartRentals</h1>
-                <p>Streamline your rental management tasks with ease</p>
-                <p>Welcome to SmartRentals.</p>
-                <p>Request a demo to setup your account and sign up.</p>
-                <a href="{{ url_for('dashboard') }}" class="request-demo">Request Demo</a>
-            </div>
+
+    <!-- Cover Image and Project Info -->
+    <section id="home" class="intro">
+        <div class="cover-image">
+            <img src="static/images/Screenshot (41).png" alt="Cover Image"> <!-- Replace with the actual image path -->
         </div>
-    </main>
+        <div class="intro-text">
+            <h1>SmartRentals</h1>
+            <p>Streamline your rental management tasks with ease</p>
+        </div>
+    </section>
+
+    <!-- Feature Section -->
+    <section id="features" class="features">
+        <h2>Key Features</h2>
+        <div class="feature-item">
+            <img src="feature1_image.jpg" alt="Feature 1"> <!-- Replace with the actual image path -->
+            <h3>Property Management</h3>
+            <p>Add, edit and delete properties</p>
+        </div>
+        <div class="feature-item">
+            <img src="feature2_image.jpg" alt="Feature 2"> <!-- Replace with the actual image path -->
+            <h3>RentaL Coollection and Payment Tracking</h3>
+            <p>Allow tracking of payments and overdue rent</p>
+        </div>
+        <div class="feature-item">
+            <img src="feature3_image.jpg" alt="Feature 3"> <!-- Replace with the actual image path -->
+            <h3>Dashboard and reports</h3>
+            <p>Overview of all properties, occupancy rates, pending payments and maintenance requests</p>
+        </div>
+        <div class="feature-item">
+            <img src="feature4_image.jpg" alt="Feature 4">
+            <h3>Profile Managaement</h3>
+            <p>Create and manage their profiles</p>
+        </div> 
+        <div>
+            <img src="features5_image.jpg" alt="Feature 5">
+            <h3>Maintenance request submission</h3>
+            <p>Submit maintenance request with details</p>
+        </div>
+
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <h2>About This Project</h2>
+        <p>This project was inspired by the need to simplify the rental property search process. As a team, we realized the challenges renters face and decided to create a solution that is both user-friendly and efficient. The project was developed as part of our Portfolio Project for Holberton School.</p>
+        <ul>
+            <li><a href="team_member_linkedin_url">LinkedIn</a></li>
+            <li><a href="team_member_linkedin_url">LinkedIn</a></li>
+            <li><a href="team_member_github_url">GitHub</a></li>
+            <li><a href="team_member_github_url">Github</a></li> 
+            <li><a href="team_member_twitter_url">Twitter</a></li>
+        </ul>
+        <p>Check out the GitHub repository: <a href="https://github.com/Mercy105/rental-house-management001.git">GitHub Repository</a></p>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 SmartRentals. All Rights Reserved.</p>
+    </footer>
+
+    <!-- Link to the external JavaScript file -->
+    <script src="static/js/script.js"></script>
 </body>
 </html>

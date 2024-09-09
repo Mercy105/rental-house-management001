@@ -1,10 +1,17 @@
+// JavaScript for Hide-on-Scroll Navigation Bar
+let lastScrollTop = 0;
+const navbar = document.getElementById('navbar');
 
-// JavaScript to toggle dropdown menu
-function toggleDropdown() {
-    var dropdown = document.getElementById("property-dropdown");
-    if (dropdown.style.display === "none" || dropdown.style.display === "") {
-        dropdown.style.display = "block";
+window.addEventListener('scroll', function() {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    
+    if (scrollTop > lastScrollTop) {
+        // Downscroll - hide the navbar
+        navbar.style.top = '-80px'; // Adjust this value based on your navbar height
     } else {
-        dropdown.style.display = "none";
+        // Upscroll - show the navbar
+        navbar.style.top = '0';
     }
-}
+    
+    lastScrollTop = scrollTop;
+});
