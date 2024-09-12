@@ -14,8 +14,8 @@ db.init_app(app)
 def landing():
     return render_template('landing.html')
 
-@app.route('/view_project')
-def view_project():
+@app.route('/request_demo')
+def request_demo():
     # Redirects to the role selection page when the "Request Demo" button is clicked
     return render_template('role_selection.html')
 
@@ -28,7 +28,7 @@ def dashboard():
         return render_template('renter_dashboard.html')
     else:
         # if no role is selected
-        return redirect(url_for('view_project'))
+        return redirect(url_for('request_demo'))
 
 @app.route('/pay_rent', methods=['POST'])
 def pay_rent():
