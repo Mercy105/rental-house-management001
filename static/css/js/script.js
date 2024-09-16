@@ -15,3 +15,16 @@ window.addEventListener('scroll', function() {
     
     lastScrollTop = scrollTop;
 });
+
+function toggleProfileForm() {
+    var formSection = document.getElementById('profile-form-section');
+    var dashboardContent = document.getElementById('dashboard-content');
+    // Toggle visibility between the form and the dashboard
+    if (formSection.style.display === "none") {
+        formSection.style.display = "block";
+        dashboardContent.style.display = "none";
+    } else {
+        formSection.style.display = "none";
+        dashboardContent.style.display = "block";
+    }
+}

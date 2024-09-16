@@ -1,5 +1,5 @@
-from flask import Flask, render_template, url_for, request, redirect
-from models import db, Property, Tenant, RentPayment, MaintenanceRequest
+from flask import Flask, render_template, url_for, request, redirect, flash
+from models import db, Property, Renter, RentPayment, MaintenanceRequest
 from werkzeug.utils import secure_filename
 import os
 
@@ -117,5 +117,26 @@ def delete_property(property_id):
     db.session.commit()
     return redirect(url_for('manage_properties'))
 
+@app.route('/manage_profile', methods=['GET'])
+def manage_profile():
+    return render_template('manage_profile.html')
+
+@app.route('/save_profile', methods=['POST'])
+def save_profile():
+    # Get form data
+    full_name = request.form.get('full_name')
+    email = request.form.get('email')
+    phone_number = request.form.get('phone_number')
+    move_in_date = request.form.get('move_in_date')
+
+    # Assuming you have a Renter model with fields: full_name, email, phone, move_in_date
+    new_profile = Renter(full_name=full_name, email=email, phone_number=phone_number, move_in_date=move_in_date)
+    
+    # Save to the database
+    db.session.add(new_profile)
+    db.session.commit()
+
+    flash('Profile updated successfully!', 'success')
+    return redirect(url_for('renter_dashboard'))  # Redirect back to the renter's dashboard
 if __name__ == '__main__':
     app.run(debug=True)

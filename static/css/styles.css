@@ -42,7 +42,7 @@ header nav ul li a {
     padding: 50px 20px;
 }
 
-.cover-image img {
+.background-image img {
     width: 100%;
     max-height: 500px;
     object-fit: cover;
@@ -420,4 +420,89 @@ a {
 
 a:hover {
     text-decoration: underline;
+}
+
+/* Profile Form Container */
+.profile-management {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f9f9f9;
+    padding: 20px;
+}
+
+/* Form Wrapper */
+.form-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+form {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    max-width: 500px;
+    width: 100%;
+}
+
+/* Form Fields */
+form label {
+    font-size: 1rem;
+    color: #333;
+    display: block;
+    margin-bottom: 8px;
+}
+
+form input[type="text"],
+form input[type="email"],
+form input[type="tel"],
+form input[type="date"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+/* Form Button */
+form button[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    background-color: #007bff;
+    color: white;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+form button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/* Form header styling */
+.form-header h2 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    form {
+        padding: 15px;
+    }
+
+    form label {
+        font-size: 0.9rem;
+    }
+
+    form button[type="submit"] {
+        font-size: 0.9rem;
+    }
 }

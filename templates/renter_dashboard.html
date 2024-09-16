@@ -13,8 +13,8 @@
             <h2>Renter Panel</h2>
         </div>
         <ul class="sidebar-links">
-            <li><a href="#">Dashboard</a></li>
-            <li><a href="#">Profile Management</a></li>
+            <li><a href="#" onclick="toggleProfileForm()">Dashboard</a></li>
+            <li><a href="{{ url_for('manage_profile') }}" onclick="toggleProfileForm()">Profile Management</a></li>
             <li><a href="#">Payment History</a></li>
             <li><a href="#">Pay Rent Online</a></li>
             <li><a href="#">Maintenance Requests</a></li>
@@ -44,7 +44,7 @@
             <div class="cards">
                 <div class="card">
                     <h3>Profile Management</h3>
-                    <a href="#">Manage Profile</a>
+                    <a href="{{ url_for('manage_profile') }}" onclick="toggleProfileForm()">Manage Profile</a>
                 </div>
                 <div class="card">
                     <h3>Payment History</h3>
@@ -71,6 +71,10 @@
                     </ul>
                 </div>
             </div>
+        </section>
+        <!-- Profile Management Form Section -->
+        <section id="profile-form-section" style="display:none;">
+            { % include 'profile_form.html' % }
         </section>
     </div>
 </body>
