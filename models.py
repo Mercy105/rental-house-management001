@@ -31,7 +31,7 @@ class Property(db.Model):
 # Define Tenant model
 class Renter(db.Model):
     __tablename__ = 'renter'
-    renter_id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
     property_id = db.Column(db.Integer, db.ForeignKey('properties.id'), nullable=False)
     full_name = db.Column(db.String(255), nullable=False)
     email = db.Column(db.String(255), unique=True, nullable=False)

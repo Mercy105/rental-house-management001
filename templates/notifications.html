@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notifications</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <!-- Sidebar (if required) -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h2>Renter Panel</h2>
+        </div>
+        <ul class="sidebar-links">
+            <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
+            <li><a href="{{ url_for('manage_profile') }}">Profile Management</a></li>
+            <li><a href="{{ url_for('payment_history') }}">Payment History</a></li>
+            <li><a href="#">Pay Rent Online</a></li>
+            <li><a href="#">Maintenance Requests</a></li>
+            <li><a href="{{ url_for('notifications') }}">Notifications</a></li>
+            <li><a href="#">Logout</a></li>
+        </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <h1>Notifications</h1>
+
+        <div class="notifications-list">
+            {% for notification in notifications %}
+            <div class="notification-item {{ notification.type }}">
+                <h3>{{ notification.title }}</h3>
+                <p>{{ notification.message }}</p>
+                <span class="notification-date">{{ notification.date }}</span>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

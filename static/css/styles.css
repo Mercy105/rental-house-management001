@@ -506,3 +506,101 @@ form button[type="submit"]:hover {
         font-size: 0.9rem;
     }
 }
+
+.container {
+    width: 60%;
+    margin: auto;
+    padding: 20px;
+    background-color: #131212;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+h2, h3 {
+    color: #e6e6e6;
+}
+
+.mpesa-details {
+    padding: 15px;
+    background-color: #824292;
+    border-radius: 5px;
+}
+
+ol {
+    padding-left: 20px;
+}
+
+p {
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.payment-history-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.payment-history-table th, .payment-history-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.payment-history-table th {
+    background-color: #4CAF50;
+    color: white;
+    text-align: left;
+}
+
+.payment-history-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.payment-history-table tr:hover {
+    background-color: #ddd;
+}
+
+/* Basic styling for notifications */
+.notifications-list {
+    margin-top: 20px;
+}
+
+.notification-item {
+    border: 1px solid #ccc;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.notification-item h3 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.notification-item p {
+    margin: 5px 0;
+    font-size: 16px;
+}
+
+.notification-item .notification-date {
+    font-size: 12px;
+    color: #888;
+}
+
+/* Different colors for notification types */
+.notification-item.alert {
+    border-left: 5px solid #ff4444;
+}
+
+.notification-item.info {
+    border-left: 5px solid #33b5e5;
+}
+
+.notification-item.warning {
+    border-left: 5px solid #ffbb33;
+}
+
+.notification-item.success {
+    border-left: 5px solid #00c851;
+}
+

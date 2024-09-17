@@ -1,5 +1,5 @@
 from flask import Flask, render_template, url_for, request, redirect, flash
-from models import db, Property, Renter, RentPayment, MaintenanceRequest
+from models import db, Property, Renter, MaintenanceRequest
 from werkzeug.utils import secure_filename
 import os
 
@@ -30,15 +30,6 @@ def dashboard():
         # if no role is selected
         return redirect(url_for('request_demo'))
 
-@app.route('/pay_rent', methods=['POST'])
-def pay_rent():
-    # Use M-Pesa API SDK or HTTP request to initiate payment
-    phone_number = request.form.get('phone')
-    amount = request.form.get('amount')
-    # Logic to interact with M-Pesa API here
-    
-    # If payment is successful, save the transaction details
-    return redirect(url_for('payment_history'))
 
 # Route to manage properties
 @app.route('/property_management')
@@ -138,5 +129,99 @@ def save_profile():
 
     flash('Profile updated successfully!', 'success')
     return redirect(url_for('renter_dashboard'))  # Redirect back to the renter's dashboard
+
+@app.route('/maintenance_request', methods=['GET'])
+def maintenance_request():
+    return render_template('maintenance_request.html')
+
+@app.route('/submit_request', methods=['POST'])
+def submit_request():
+     # Get form data
+    property_id = request.form.get['property_id']
+    description = request.form.get['description']
+        
+    # Handle photo upload
+    photo = request.files.get('photo')
+    photo_filename = None
+    if photo and photo.filename != '':
+        photo_filename = secure_filename(photo.filename)
+        photo.save(os.path.join(app.config['UPLOAD_FOLDER'], photo_filename))
+
+    # Create new MaintenanceRequest
+    new_request = MaintenanceRequest(
+        property_id=property_id,
+        description=description,
+        photo_path=photo_filename  # Save photo path if it was uploaded
+    )
+
+    # Save to database
+    db.session.add(new_request)
+    db.session.commit()
+
+    # Redirect or give success message
+    return redirect(url_for('maintenance_request'))
+
+@app.route('/pay_rent', methods=['GET'])
+def pay_rent():
+    # page that contains the Mpesa details
+    return render_template('pay_rent.html', landlord_phone='+254799005767')
+
+# Sample data for demonstration
+payment_history_data = [
+    {
+        'date': '2024-09-10',
+        'amount': '1200',
+        'method': 'M-Pesa',
+        'status': 'Completed',
+        'transaction_id': 'TXN1234567',
+        'invoice_link': '#'
+    },
+    {
+        'date': '2024-08-10',
+        'amount': '1200',
+        'method': 'M-Pesa',
+        'status': 'Completed',
+        'transaction_id': 'TXN1234568',
+        'invoice_link': '#'
+    }
+]
+
+@app.route('/payment_history')
+def payment_history():
+    return render_template('payment_history.html', payment_history=payment_history_data)
+
+# Sample data for notifications
+notifications_data = [
+    {
+        'title': 'Payment Reminder',
+        'message': 'Your rent is due on 30th September 2024. Please make sure to complete the payment.',
+        'date': '2024-09-17',
+        'type': 'alert'
+    },
+    {
+        'title': 'Maintenance Request Update',
+        'message': 'Your maintenance request for plumbing has been completed.',
+        'date': '2024-09-15',
+        'type': 'success'
+    },
+    {
+        'title': 'Lease Renewal Reminder',
+        'message': 'Your lease is up for renewal on 1st November 2024. Please contact us for further instructions.',
+        'date': '2024-09-10',
+        'type': 'warning'
+    },
+    {
+        'title': 'General Notice',
+        'message': 'The building will undergo scheduled maintenance on 22nd September. Expect water disruptions.',
+        'date': '2024-09-05',
+        'type': 'info'
+    }
+]
+
+@app.route('/notifications')
+def notifications():
+    return render_template('notifications.html', notifications=notifications_data)
+
+
 if __name__ == '__main__':
     app.run(debug=True)

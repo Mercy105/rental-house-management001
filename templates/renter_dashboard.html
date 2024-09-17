@@ -15,10 +15,10 @@
         <ul class="sidebar-links">
             <li><a href="#" onclick="toggleProfileForm()">Dashboard</a></li>
             <li><a href="{{ url_for('manage_profile') }}" onclick="toggleProfileForm()">Profile Management</a></li>
-            <li><a href="#">Payment History</a></li>
-            <li><a href="#">Pay Rent Online</a></li>
-            <li><a href="#">Maintenance Requests</a></li>
-            <li><a href="#">Notifications</a></li>
+            <li><a href="{{ url_for('payment_history')}}">Payment History</a></li>
+            <li><a href="{{ url_for('pay_rent') }}">Pay Rent Online</a></li>
+            <li><a href="{{ url_for('maintenance_request') }}">Maintenance Requests</a></li>
+            <li><a href="{{ url_for('notifications') }}">Notifications</a></li>
             <li><a href="#">Logout</a></li>
         </ul>
     </aside>
@@ -48,19 +48,19 @@
                 </div>
                 <div class="card">
                     <h3>Payment History</h3>
-                    <a href="#">View History</a>
+                    <a href="{{ url_for('payment_history') }}">View History</a>
                 </div>
                 <div class="card">
                     <h3>Pay Rent</h3>
-                    <a href="#">Pay Now</a>
+                    <a href="{{ url_for('pay_rent') }}">Pay Now</a>
                 </div>
                 <div class="card">
                     <h3>Maintenance Requests</h3>
-                    <a href="#">Submit Request</a>
+                    <a href="{{ url_for('maintenance_request') }}">Submit Request</a>
                 </div>
                 <div class="card">
                     <h3>Notifications</h3>
-                    <a href="#">View Notifications</a>
+                    <a href="{{ url_for('notifications') }}">View Notifications</a>
                 </div>
                 <div class="notifications">
                     <h3>Notifications</h3>

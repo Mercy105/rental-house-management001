@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pay Rent</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>Pay Rent via Mpesa</h2>
+        <p>Please use the following details to pay your rent:</p>
+        
+        <div class="mpesa-details">
+            <h3>Mpesa Details</h3>
+            <p><strong>Landlord's Phone Number:</strong> {{ landlord_phone }}</p>
+            <p><strong>Amount to Pay:</strong> Please enter the agreed amount.</p>
+
+            <h4>How to Pay via Mpesa:</h4>
+            <ol>
+                <li>Go to your Mpesa menu.</li>
+                <li>Select <strong>Lipa na Mpesa</strong>.</li>
+                <li>Select <strong>Send Money</strong>.</li>
+                <li>Enter the phone number: <strong>{{ landlord_phone }}</strong>.</li>
+                <li>Enter the amount to pay.</li>
+                <li>Confirm and send.</li>
+            </ol>
+        </div>
+    </div>
+</body>
+</html>
