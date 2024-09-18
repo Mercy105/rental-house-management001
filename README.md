@@ -1,4 +1,5 @@
 # Rental House Management System
+![Screenshot (56)](https://github.com/user-attachments/assets/7b657108-f49a-440f-b6c6-d512eab4b0e3)
 
 ## Introduction
 The Rental Management System is a web application designed to simplify the relationship between landlords and tenants by providing a clear, organized, and transparent way to handle rental payments, property management, and maintenance requests. The platform allows landlords to manage multiple properties, track rent payments, and communicate with tenants efficiently, while tenants can submit payments online, view payment history, and request maintenance.
