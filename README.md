@@ -69,6 +69,13 @@ We welcome contributions to the Rental Management System project! If you would l
    ```bash
    git push origin feature-name
 
+## Authors
+### Donnelly Amaitsa
+Donnelly worked on the system design, the database, and REST API for the most parts and also did some front end part to enhance understanding. 
+
+### Mercy Waweru
+Mercy handled deployment of the web page and also did some front-end part.
+
 ## Related Projects
 - AppFolio: [https://www.appfolio.com/]
 
