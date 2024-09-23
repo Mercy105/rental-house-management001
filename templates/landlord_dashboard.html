@@ -14,9 +14,9 @@
         </div>
         <ul class="sidebar-links">
             <li><a href="#">Dashboard</a></li>
-            <li><a href="#">Property Management</a></li>
+            <li><a href="{{ url_for('manage_properties') }}">Property Management</a></li>
             <li><a href="#">Tenant Management</a></li>
-            <li><a href="#">Rent Tracking</a></li>
+            <li><a href="{{ url_for('rent_tracking') }}">Rent Tracking</a></li>
             <li><a href="#">Maintenance Requests</a></li>
             <li><a href="#">Logout</a></li>
         </ul>
@@ -41,7 +41,7 @@
             <div class="cards">
                 <div class="card">
                     <h3>Property Management</h3>
-                    <a href="#">Manage Properties</a>
+                    <a href="{{ url_for('manage_properties') }}">Manage Properties</a>
                 </div>
                 <div class="card">
                     <h3>Tenant Management</h3>
@@ -49,7 +49,7 @@
                 </div>
                 <div class="card">
                     <h3>Rent Tracking</h3>
-                    <a href="#">View Rentals</a>
+                    <a href="{{ url_for('rent_tracking') }}">View Rentals</a>
                 </div>
                 <div class="card">
                     <h3>Maintenance Requests</h3>

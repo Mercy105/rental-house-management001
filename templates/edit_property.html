@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Property</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body></body>
+<div class="container mt-4">
+    <h3>Edit Property</h3>
+    <form id="editPropertyForm" method="POST" action="">
+        <div class="form-group">
+            <label for="name">Property Name</label>
+            <input type="text" class="form-control" id="name" name="name" value="{{ property.name }}" required>
+        </div>
+        <div class="form-group">
+            <label for="location">Location</label>
+            <input type="text" class="form-control" id="location" name="location" value="{{ property.location }}" required>
+        </div>
+        <div class="form-group">
+            <label for="rent_amount">Rent Amount</label>
+            <input type="number" class="form-control" id="rent_amount" name="rent_amount" value="{{ property.rent_amount }}" required>
+        </div>
+        <div class="form-group">
+            <label for="amenities">Amenities</label>
+            <input type="text" class="form-control" id="amenities" name="amenities" value="{{ property.amenities }}">
+        </div>
+        <div class="form-group">
+            <label for="photo_path">Photo Path</label>
+            <input type="text" class="form-control" id="photo_path" name="photo_path" value="{{ property.photo_path }}">
+        </div>
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea class="form-control" id="description" name="description">{{ property.description }}</textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Update Property</button>
+    </form>
+</div>

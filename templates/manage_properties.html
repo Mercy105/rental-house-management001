@@ -1,0 +1,74 @@
+<DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body></body>
+<div class="container mt-4">
+    <h3>Add a New Property</h3>
+    <form id="propertyForm" method="POST" action="{{ url_for('manage_properties') }}">
+        <div class="form-group">
+            <label for="name">Property Name</label>
+            <input type="text" class="form-control" id="name" name="name" required>
+        </div>
+        <div class="form-group">
+            <label for="location">Location</label>
+            <input type="text" class="form-control" id="location" name="location" required>
+        </div>
+        <div class="form-group">
+            <label for="rent">Rent Amount</label>
+            <input type="number" class="form-control" id="rent" name="rent" required>
+        </div>
+        <div class="form-group">
+            <label for="amenities">Amenities</label>
+            <input type="text" class="form-control" id="amenities" name="amenities">
+        </div>
+        <div class="form-group">
+            <label for="photo_path">Photo Path</label>
+            <input type="text" class="form-control" id="photo_path" name="photo_path">
+        </div>
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea class="form-control" id="description" name="description"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Add Property</button>
+    </form>
+
+    <!-- Property List Section -->
+        <div class="property-list">
+            <h2>Your Properties</h2>
+            {% for property in properties %}
+            <div class="property-card">
+                <h3>{{ property.name }}</h3>
+                <p><strong>Location:</strong> {{ property.location }}</p>
+                <p><strong>Rent:</strong> ${{ property.rent }}</p>
+                <p><strong>Amenities:</strong> {{ property.amenities }}</p>
+                <p><strong>Description:</strong> {{ property.description }}</p>
+                <p><strong>Added on:</strong> {{ property.created_at.strftime('%Y-%m-%d') }}</p>
+            </div>
+            {% else %}
+            <p>No properties registered yet.</p>
+            {% endfor %}
+        </div>
+
+</div>
+
+<hr>
+
+<h3>Property List</h3>
+<div id="propertyList">
+    {% for property in properties %}
+    <div class="card mt-2">
+        <div class="card-body">
+            <h5 class="card-title">{{ property.name }}</h5>
+            <p class="card-text">{{ property.location }} - ${{ property.rent_amount }}</p>
+            <p class="card-text">{{ property.description }}</p>
+            <a href="/edit_property/{{ property.id }}" class="btn btn-warning">Edit</a>
+            <a href="/delete_property/{{ property.id }}" class="btn btn-danger">Delete</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>

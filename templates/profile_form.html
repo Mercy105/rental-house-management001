@@ -21,6 +21,14 @@
             <label for="move_in_date">Move-in Date:</label>
             <input type="date" id="move_in_date" name="move_in_date" required><br>
 
+            <!-- Property Selection Dropdown -->
+        <label for="property_id">Select Property:</label>
+        <select id="property_id" name="property_id" required>
+            {% for property in properties %}
+                <option value="{{ property.id }}">{{ property.name }}</option>
+            {% endfor %}
+        </select><br>
+
             <button type="submit">Save Profile</button>
         </form>
     </section>
