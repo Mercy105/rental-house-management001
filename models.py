@@ -12,6 +12,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 # Initialize the database
 db = SQLAlchemy()
 
+
 # Define Property model
 class Property(db.Model):
     __tablename__ = 'properties'
@@ -29,7 +30,6 @@ class Property(db.Model):
     # Relationships
     renter = db.relationship('Renter', back_populates='property', uselist=False)
     payment = db.relationship('RentPayment', backref='property', lazy=True)
-    maintenance_requests = db.relationship('MaintenanceRequest', backref='property', lazy=True)
 
 class RentPayment(db.Model):
     __tablename__ = 'rent_payments'
@@ -56,7 +56,6 @@ class Renter(db.Model):
 
     # Relationships
     property = db.relationship('Property', back_populates="renter", uselist=False)
-    rent_payments = db.relationship('RentPayment', backref='renter')
     
     def __init__(self, full_name, email, phone_number, move_in_date, property_id):
         self.full_name = full_name;
@@ -64,18 +63,3 @@ class Renter(db.Model):
         self.phone_number = phone_number;
         self.move_in_date = move_in_date;
         self.property_id = property_id;
-
-
-
-# Define Maintenance Request model
-class MaintenanceRequest(db.Model):
-    __tablename__ = 'maintenance_requests'
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    renter_id = db.Column(db.Integer, db.ForeignKey('renter.id'), nullable=False)
-    property_id = db.Column(db.Integer, db.ForeignKey('properties.id'), nullable=False)
-    description = db.Column(db.Text, nullable=False)
-    status = db.Column(db.Enum('pending', 'in-progress', 'completed'), default='pending')
-    created_at = db.Column(db.DateTime, default=db.func.current_timestamp())
-    updated_at = db.Column(db.DateTime, default=db.func.current_timestamp(), onupdate=db.func.current_timestamp())
-    photo_path = db.Column(db.String(255))
-

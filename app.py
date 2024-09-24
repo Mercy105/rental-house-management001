@@ -1,5 +1,5 @@
-from flask import Flask, render_template, url_for, request, redirect, flash, session
-from models import db, Property, Renter, MaintenanceRequest
+from flask import Flask, render_template, url_for, request, redirect, flash
+from models import db, Property, Renter
 from flask_migrate import Migrate
 from datetime import datetime
 from werkzeug.utils import secure_filename
@@ -51,7 +51,7 @@ def manage_properties():
         location = request.form.get('location')
         rent = request.form.get('rent')
         amenities = request.form.get('amenities')
-        photo_path = request.form.get('photo_path')
+
         description = request.form.get('description')
 
         new_property = Property(
@@ -59,7 +59,6 @@ def manage_properties():
             location=location,
             rent=rent,
             amenities=amenities,
-            photo_path=photo_path,
             description=description
         )
 
@@ -122,6 +121,8 @@ def manage_profile():
         move_in_date_str = request.form.get('move_in_date')
         property_id = request.form.get('property_id')
 
+        flash("User registered successfully")
+        
         # Debugging: Print parsed form data
         print(f"Name: {full_name}, Email: {email}, Phone: {phone_number}, Move-in Date: {move_in_date_str}, Property: {property_id}")
         
@@ -142,27 +143,16 @@ def manage_profile():
             db.session.add(new_renter)
             db.session.commit()
 
-            print(f"Renter {new_renter.full_name} added successfully!")
 
             # Redirect to view the profile
-            return redirect(url_for('view_profile', renter_id=new_renter.id))
+            return redirect(url_for('manage_profile', renter_id=new_renter.id))
 
         except Exception as e:
-            flash(f"There was an issue saving the profile: {e}", 'danger')
+            flash("There was an issue saving the profile: {e}", 'danger')
             return redirect(url_for('manage_profile'))  # Redirect back to the form on error
 
-    # Query properties for GET request (form display)
-    properties = Property.query.all()
-    return render_template('manage_profile.html', properties=properties)
+    return render_template('manage_profile.html', properties=property)
 
-
-@app.route('/view_profile/<int:renter_id>', methods=['GET'])
-def view_profile(renter_id):
-    # Query the renter's profile using their ID
-    renter = Renter.query.get_or_404(renter_id)
-
-    # Render the profile page and pass the renter object
-    return render_template('view_profile.html', renter=renter)
 
 @app.route('/edit_profile/<int:renter_id>', methods=['GET', 'POST'])
 def edit_profile(renter_id):
@@ -182,36 +172,6 @@ def edit_profile(renter_id):
     return render_template('edit_profile.html', renter=renter, properties=properties)
 
 
-@app.route('/maintenance_request', methods=['GET'])
-def maintenance_request():
-    return render_template('maintenance_request.html')
-
-@app.route('/submit_request', methods=['POST'])
-def submit_request():
-     # Get form data
-    property_id = request.form.get['property_id']
-    description = request.form.get['description']
-        
-    # Handle photo upload
-    photo = request.files.get('photo')
-    photo_filename = None
-    if photo and photo.filename != '':
-        photo_filename = secure_filename(photo.filename)
-        photo.save(os.path.join(app.config['UPLOAD_FOLDER'], photo_filename))
-
-    # Create new MaintenanceRequest
-    new_request = MaintenanceRequest(
-        property_id=property_id,
-        description=description,
-        photo_path=photo_filename  # Save photo path if it was uploaded
-    )
-
-    # Save to database
-    db.session.add(new_request)
-    db.session.commit()
-
-    # Redirect or give success message
-    return redirect(url_for('maintenance_request'))
 
 @app.route('/pay_rent', methods=['GET'])
 def pay_rent():

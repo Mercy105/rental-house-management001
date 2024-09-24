@@ -17,7 +17,6 @@
             <li><a href="{{ url_for('manage_profile') }}">Profile Management</a></li>
             <li><a href="{{ url_for('payment_history') }}">Payment History</a></li>
             <li><a href="{{ url_for('pay_rent') }}">Pay Rent Online</a></li>
-            <li><a href="{{ url_for('maintenance_request') }}">Maintenance Requests</a></li>
             <li><a href="#">Logout</a></li>
         </ul>
     </aside>
@@ -37,6 +36,7 @@
             <div class="form-header">
                 <h2>Manage Your Profile</h2>
             </div>
+
 
             <!-- Include the reusable form -->
             {% include 'profile_form.html' %}
