@@ -16,10 +16,9 @@
         <ul class="sidebar-links">
             <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
             <li><a href="{{ url_for('manage_profile') }}">Profile Management</a></li>
-            <li><a href="#">Payment History</a></li>
-            <li><a href="#">Pay Rent Online</a></li>
+            <li><a href="{{ url_for('payment_history') }}">Payment History</a></li>
+            <li><a href="{{ url_for('pay_rent') }}">Pay Rent Online</a></li>
             <li><a href="{{ url_for('maintenance_request') }}">Maintenance Requests</a></li>
-            <li><a href="#">Notifications</a></li>
             <li><a href="#">Logout</a></li>
         </ul>
     </aside>

@@ -8,7 +8,7 @@
         <div class="form-header">
             <h2>Manage Your Profile</h2>
         </div>
-        <form action="{{ url_for('save_profile') }}" method="POST">
+        <form action="{{ url_for('manage_profile') }}" method="POST">
             <label for="full_name">Full Name:</label>
             <input type="text" id="full_name" name="full_name" required><br>
 
@@ -21,14 +21,9 @@
             <label for="move_in_date">Move-in Date:</label>
             <input type="date" id="move_in_date" name="move_in_date" required><br>
 
-            <!-- Property Selection Dropdown -->
-        <label for="property_id">Select Property:</label>
-        <select id="property_id" name="property_id" required>
-            {% for property in properties %}
-                <option value="{{ property.id }}">{{ property.name }}</option>
-            {% endfor %}
-        </select><br>
-
+            <label for="property">Property:</label>
+            <input type="text" id="property" name="property" required><br>
+            
             <button type="submit">Save Profile</button>
         </form>
     </section>

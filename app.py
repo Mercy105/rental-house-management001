@@ -7,6 +7,10 @@ from sqlalchemy import create_engine
 import os
 
 app = Flask(__name__)
+
+app.config['SECRET_KEY'] = '123456'  # Replace with a more secure and unique key
+
+
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///rental_management.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['UPLOAD_FOLDER'] = 'static/uploads/'  # Directory to store uploaded images
@@ -106,49 +110,77 @@ def delete_property(id):
     except Exception as e:
         return f"There was a problem deleting the property: {e}"
 
-@app.route('/manage_tenants')
-def manage_tenants():
-    # Assuming landlord is logged in, retrieve landlord's properties
-    landlord_id = session['landlord_id']
-    
-    # Retrieve all renters linked to the landlord's properties
-    renters = Renter.query.join(Property).filter(Property.landlord_id == landlord_id).all()
-    
-    # Pass renters to the template
-    return render_template('manage_tenants.html', renters=renters)
 
-
-@app.route('/manage_profile', methods=['GET'])
+@app.route('/manage_profile', methods=['GET', 'POST'])
 def manage_profile():
+    if request.method == 'POST':
+        print(request.form)
+        # Get form data
+        full_name = request.form.get('full_name')
+        email = request.form.get('email')
+        phone_number = request.form.get('phone_number')
+        move_in_date_str = request.form.get('move_in_date')
+        property_id = request.form.get('property_id')
+
+        # Debugging: Print parsed form data
+        print(f"Name: {full_name}, Email: {email}, Phone: {phone_number}, Move-in Date: {move_in_date_str}, Property: {property_id}")
+        
+        try:
+            # Convert move_in_date_str to datetime object
+            move_in_date = datetime.strptime(move_in_date_str, '%Y-%m-%d')
+
+            # Create a new Renter instance
+            new_renter = Renter(
+                full_name=full_name,
+                email=email,
+                phone_number=phone_number,
+                move_in_date=move_in_date,
+                property_id=property_id
+            )
+
+            # Save the new renter to the database
+            db.session.add(new_renter)
+            db.session.commit()
+
+            print(f"Renter {new_renter.full_name} added successfully!")
+
+            # Redirect to view the profile
+            return redirect(url_for('view_profile', renter_id=new_renter.id))
+
+        except Exception as e:
+            flash(f"There was an issue saving the profile: {e}", 'danger')
+            return redirect(url_for('manage_profile'))  # Redirect back to the form on error
+
+    # Query properties for GET request (form display)
     properties = Property.query.all()
-    return render_template('manage_profile.html')
+    return render_template('manage_profile.html', properties=properties)
 
-@app.route('/save_profile', methods=['POST'])
-def save_profile():
-    # Get form data
-    full_name = request.form.get('full_name')
-    email = request.form.get('email')
-    phone_number = request.form.get('phone_number')
-    move_in_date_str = request.form.get('move_in_date')
 
-    property_id = request.form.get('property_id')
-    
-    try:
-        # Convert move_in_date_str to datetime object
-        move_in_date = datetime.strptime(move_in_date_str, '%Y-%m-%d')
+@app.route('/view_profile/<int:renter_id>', methods=['GET'])
+def view_profile(renter_id):
+    # Query the renter's profile using their ID
+    renter = Renter.query.get_or_404(renter_id)
 
-        # Assuming you have a Renter model with fields: full_name, email, phone, move_in_date
-        new_renter = Renter(full_name=full_name, email=email, phone_number=phone_number, move_in_date=move_in_date, property_id=property_id)
-    
-        # Save to the database
-        db.session.add(new_renter)
+    # Render the profile page and pass the renter object
+    return render_template('view_profile.html', renter=renter)
+
+@app.route('/edit_profile/<int:renter_id>', methods=['GET', 'POST'])
+def edit_profile(renter_id):
+    renter = Renter.query.get_or_404(renter_id)
+
+    if request.method == 'POST':
+        renter.full_name = request.form.get('full_name')
+        renter.email = request.form.get('email')
+        renter.phone_number = request.form.get('phone_number')
+        renter.move_in_date = datetime.strptime(request.form.get('move_in_date'), '%Y-%m-%d')
+        renter.property_id = request.form.get('property_id')
+
         db.session.commit()
+        return redirect(url_for('view_profile', renter_id=renter.id))
 
-        flash('Profile updated successfully!', 'success')
-        return redirect(url_for('renter_dashboard'))  # Redirect back to the renter's dashboard
-    except Exception as e:
-        flash(f"There was an issue saving the profile: {e}", 'danger')
-        return redirect(url_for('manage_profile'))  # Redirect back to the form on error
+    properties = Property.query.all()
+    return render_template('edit_profile.html', renter=renter, properties=properties)
+
 
 @app.route('/maintenance_request', methods=['GET'])
 def maintenance_request():

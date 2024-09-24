@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Renter Profile</title>
+</head>
+<body>
+    <h1>{{ renter.full_name }}'s Profile</h1>
+    <p><strong>Email:</strong> {{ renter.email }}</p>
+    <p><strong>Phone Number:</strong> {{ renter.phone_number }}</p>
+    <p><strong>Move-in Date:</strong> {{ renter.move_in_date.strftime('%Y-%m-%d') }}</p>
+
+    <h2>Property Information</h2>
+    <p><strong>Property:</strong> {{ renter.property.name }}</p>
+
+    <a href="{{ url_for('edit_profile', renter_id=renter.id) }}">Edit Profile</a>
+</body>
+</html>
